@@ -9,7 +9,7 @@ package lintcode;
  * 注意事项
  * 你不需要从输入流读入数据，只需要根据aplusb的两个参数a和b，计算他们的和并返回就行。
  */
-public class lintcode_1_aplusb {
+public class APlusB {
     public int plus(int a,int b){
         while (b!=0){
             int a_ = a^b;
