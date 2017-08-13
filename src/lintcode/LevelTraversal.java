@@ -52,7 +52,7 @@ public class LevelTraversal {
         return success;
     }
 
-    private static TreeNode example() {
+    public static TreeNode example() {
         TreeNode node = new TreeNode(1);
         node.left = new TreeNode(2);
         node.right = new TreeNode(3);
