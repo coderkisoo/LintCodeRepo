@@ -13,22 +13,18 @@ public class KMP {
 
     private static void KMP(String source, String pattern) {
         int[] N = getN(pattern);
-        int res = 0;
         int sourceLength = source.length();
         int patternLength = pattern.length();
-        for (int i = 0; i <= (sourceLength - patternLength); ) {
-            res++;
+        int i = 0;
+        while (i <= sourceLength - patternLength) {
             String str = source.substring(i, i + patternLength);//要比较的字符串
-            print(str);
             int count = getNext(pattern, str, N);
-            print("移动" + count + "步");
             if (count == 0) {
                 print("KMP：匹配成功");
                 break;
             }
             i = i + count;
         }
-        print("KMP：一共匹配" + res + "次数");
     }
 
     /**
@@ -63,8 +59,6 @@ public class KMP {
         for (int i = j; i >= 2; i--) {
             N[i - 1] = getK(i, pat);
         }
-        for (int a : N)
-            print(a);
         return N;
     }
 
