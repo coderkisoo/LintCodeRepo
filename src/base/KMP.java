@@ -65,14 +65,14 @@ public class KMP {
     private static int getK(int j, char[] pat) {
         int x = j - 2;
         int y = 1;
-        while (x >= 0 && compare(pat, 0, x, y, j - 1)) {
+        while (x >= 0 && compare(pat, 0, x, y)) {
             x--;
             y++;
         }
         return x + 1;
     }
 
-    private static boolean compare(char[] pat, int b1, int e1, int b2, int e2) {
+    private static boolean compare(char[] pat, int b1, int e1, int b2) {
         int n = e1 - b1 + 1;
         while (n-- != 0) {
             if (pat[b1] != pat[b2]) {
