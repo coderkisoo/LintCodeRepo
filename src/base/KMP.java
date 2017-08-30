@@ -12,6 +12,7 @@ public class KMP {
     }
 
     private static void KMP(String source, String pattern) {
+        //根据要比较的字符串算出数组N
         int[] N = getN(pattern);
         int sourceLength = source.length();
         int patternLength = pattern.length();
@@ -37,11 +38,11 @@ public class KMP {
      */
     private static int getNext(String pattern, String str, int[] N) {
         int n = pattern.length();
-        char v1[] = str.toCharArray();
-        char v2[] = pattern.toCharArray();
+        char value1[] = str.toCharArray();
+        char value2[] = pattern.toCharArray();
         int x = 0;
         while (n-- != 0) {
-            if (v1[x] != v2[x]) {
+            if (value1[x] != value2[x]) {
                 if (x == 0) {
                     return 1;//如果第一个不相同，移动1步
                 }
@@ -62,24 +63,31 @@ public class KMP {
         return N;
     }
 
-    private static int getK(int j, char[] pat) {
-        int x = j - 2;
+    /**
+     * 走K步
+     * @param i
+     * @param pattern
+     * @return
+     */
+    private static int getK(int i, char[] pattern) {
+        int x = i - 2;
         int y = 1;
-        while (x >= 0 && compare(pat, 0, x, y)) {
+        //从start到y的值与x到end的值相同。
+        while (x >= 0 && compare(pattern, 0, x, y)) {
             x--;
             y++;
         }
         return x + 1;
     }
 
-    private static boolean compare(char[] pat, int b1, int e1, int b2) {
-        int n = e1 - b1 + 1;
+    private static boolean compare(char[] pat, int start, int length, int end) {
+        int n = length - start + 1;
         while (n-- != 0) {
-            if (pat[b1] != pat[b2]) {
+            if (pat[start] != pat[end]) {
                 return true;
             }
-            b1++;
-            b2++;
+            start++;
+            end++;
         }
         return false;
     }
