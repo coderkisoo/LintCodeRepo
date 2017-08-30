@@ -5,94 +5,64 @@ package base;
  */
 
 public class KMP {
+
     public static void main(String... args) {
         String parent = "abcdabcdef";
         String child = "abcdef";
-        KMP(parent, child);
+        System.out.println(kmp(parent, child));
     }
 
-    private static void KMP(String source, String pattern) {
-        //根据要比较的字符串算出数组N
-        int[] N = getN(pattern);
-        int sourceLength = source.length();
-        int patternLength = pattern.length();
-        int i = 0;
-        while (i <= sourceLength - patternLength) {
-            String str = source.substring(i, i + patternLength);//要比较的字符串
-            int count = getNext(pattern, str, N);
-            if (count == 0) {
-                print("KMP：匹配成功");
-                break;
+    public static int kmp(String source, String target) {
+        // write your code here
+
+        if (source == null || target == null || source.length() < target.length()) {
+            return -1;
+        }
+        if(target == ""){
+            return 0;
+        }
+
+        char[] ss = source.toCharArray();
+        char[] ms = target.toCharArray();
+
+        int si = 0;
+        int mi = 0;
+
+        int[] next = getNextArray(ms);
+        while (si < source.length() && mi < target.length()) {
+            if (ss[si] == ms[mi]) {
+                si++;
+                mi++;
+            } else if (next[mi] == -1) {
+                si++;
+            }else{
+                mi = next[mi];
             }
-            i = i + count;
         }
+
+        return mi == ms.length ? si - mi : -1;
     }
 
-    /**
-     * 得到下一次要移动的次数
-     *
-     * @param pattern
-     * @param str
-     * @param N
-     * @return 0, 字符串匹配；
-     */
-    private static int getNext(String pattern, String str, int[] N) {
-        int n = pattern.length();
-        char value1[] = str.toCharArray();
-        char value2[] = pattern.toCharArray();
-        int x = 0;
-        while (n-- != 0) {
-            if (value1[x] != value2[x]) {
-                if (x == 0) {
-                    return 1;//如果第一个不相同，移动1步
-                }
-                return x - N[x - 1];//x:第一次出现不同的索引的位置，即j
+    private static int[] getNextArray(char[] ms) {
+        if (ms.length == 1) {
+            return new int[]{-1};
+        }
+
+        int[] next = new int[ms.length];
+        next[0] = -1;
+        next[1] = 0;
+        int pos = 2;
+        int cn = 0;
+        while (pos < next.length) {
+            if (ms[pos - 1] == ms[cn]) {
+                next[pos++] = ++ cn;
+            }else if (cn > 0){
+                cn = next[cn];
+            }else{
+                next[pos++] = 0;
             }
-            x++;
         }
-        return 0;
+        return next;
     }
 
-    private static int[] getN(String pattern) {
-        char[] pat = pattern.toCharArray();
-        int j = pattern.length() - 1;
-        int[] N = new int[j + 1];
-        for (int i = j; i >= 2; i--) {
-            N[i - 1] = getK(i, pat);
-        }
-        return N;
-    }
-
-    /**
-     * 走K步
-     * @param i
-     * @param pattern
-     * @return
-     */
-    private static int getK(int i, char[] pattern) {
-        int x = i - 2;
-        int y = 1;
-        //从start到y的值与x到end的值相同。
-        while (x >= 0 && compare(pattern, 0, x, y)) {
-            x--;
-            y++;
-        }
-        return x + 1;
-    }
-
-    private static boolean compare(char[] pat, int start, int length, int end) {
-        int n = length - start + 1;
-        while (n-- != 0) {
-            if (pat[start] != pat[end]) {
-                return true;
-            }
-            start++;
-            end++;
-        }
-        return false;
-    }
-
-    public static void print(Object obj) {
-        System.out.println(obj);
-    }
 }
