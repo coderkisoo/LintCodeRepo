@@ -25,6 +25,7 @@ public class SpecificAdapter {
     }
 }
 
+/*******************************************************************************************/
 /***
  *  这种实现的适配器称为类适配器，因为 Adapter 类既继承了 Adaptee （被适配类），也实现了 Target 接口（因为 Java 不支持多继承，
  *  所以这样来实现），在 Client 类中我们可以根据需要选择并创建任一种符合需求的子类，来实现具体功能。
@@ -37,6 +38,7 @@ class ClassAdapter extends SpecificAdapter implements Target{
     }
 }
 
+/*******************************************************************************************/
 /***
  * 一种适配器模式是对象适配器，它不是使用多继承或继承再实现的方式，而是使用直接关联，或者称为委托的方式
  */
@@ -65,4 +67,38 @@ class ConcreteTarget implements Target{
 
 interface Target{
     void method1();
+}
+
+/*******************************************************************************************/
+/***
+ * 接口的适配模式
+ */
+
+interface Wrapper{
+    void method1();
+    void method2();
+}
+
+abstract class InterfaceWrapper implements Wrapper{
+
+    @Override
+    public void method1() {}
+
+    @Override
+    public void method2() {}
+}
+
+class Wrapper1 extends InterfaceWrapper{
+    @Override
+    public void method1() {
+        super.method1();
+    }
+}
+
+
+class Wrapper2 extends InterfaceWrapper{
+    @Override
+    public void method1() {
+        super.method2();
+    }
 }
