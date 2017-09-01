@@ -8,7 +8,8 @@ package DesignPattern;
  * 工厂模式
  */
 public class SimpleFactory {
-    public Product produce(int type){
+    //static -> 静态工厂
+    public static Product produce(int type){
         switch (type){
             case 1:
                 return new ProductA();
