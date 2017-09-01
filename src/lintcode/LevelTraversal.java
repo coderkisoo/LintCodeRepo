@@ -52,9 +52,20 @@ public class LevelTraversal {
         return success;
     }
 
+    /***
+     *            1
+     *          /  \
+     *        2     3
+     *      /  \   / \
+     *    4     9 5   6
+     *          / \
+     *        7   8
+     * @return
+     */
     public static TreeNode example() {
         TreeNode node = new TreeNode(1);
         node.left = new TreeNode(2);
+        node.left.right = new TreeNode(9);
         node.right = new TreeNode(3);
         node.left.left = new TreeNode(4);
         node.right.left = new TreeNode(5);
