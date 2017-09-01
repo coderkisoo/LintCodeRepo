@@ -12,11 +12,12 @@ import java.util.Queue;
  */
 
 /**
- *     8
- *  / | \
- * 1  2  3
- *      /\
- *     4  6
+ *      8
+ *   / | \
+ *  1  2  3
+ *       / \
+ *      4   6
+ * 等同于层序遍历
  *
  */
 public class BFSTree {

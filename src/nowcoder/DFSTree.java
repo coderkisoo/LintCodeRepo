@@ -7,11 +7,13 @@ package nowcoder;
 import java.util.Stack;
 
 /**
- *     8
- *   / | \
- *  1  2  3
- * /\    / \
- *4  6  5   7
+ *      8
+ *    / | \
+ *   1  2  3
+ *  /\    / \
+ * 4  6  5   7
+ *
+ * 先打印根节点，再从后到前压栈。
  */
 public class DFSTree {
 
