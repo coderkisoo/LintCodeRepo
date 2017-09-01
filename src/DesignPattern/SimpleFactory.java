@@ -7,7 +7,7 @@ package DesignPattern;
 /***
  * 工厂模式
  */
-public abstract class SimpleFactory {
+public class SimpleFactory {
     public Product produce(int type){
         switch (type){
             case 1:
