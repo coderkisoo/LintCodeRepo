@@ -17,7 +17,7 @@ import java.util.Queue;
  *  1  2  3
  *       / \
  *      4   6
- * 等同于层序遍历
+ * 等同于层序遍历，设置last和nlast，nlast等于最后加入的节点。last等同于上一层最后一个节点
  *
  */
 public class BFSTree {
