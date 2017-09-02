@@ -5,6 +5,7 @@ package DesignPattern.behavior;
  */
 /**
  * 自我感觉，状态模式和策略模式是极为接近的两个模式，区别就是策略模式更趋向策略，状态模式更趋向状态的修改
+ * 策略的改变是靠Client完成，状态的改变则是靠自己
  * */
 
 interface State{
