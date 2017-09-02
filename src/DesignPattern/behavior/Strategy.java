@@ -7,7 +7,7 @@ package DesignPattern.behavior;
 /***
  * 策略模式，不需要写太多的if else，将算法单独封装，可以单独替换，独立于客户产生变换
  */
-public class Context {
+class Context {
     private Strategy strategy;
 
     public void setStrategy(Strategy strategy){
