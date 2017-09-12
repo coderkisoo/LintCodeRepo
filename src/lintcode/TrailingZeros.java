@@ -20,10 +20,10 @@ public class TrailingZeros {
      */
     public long trailingZeros(long n) {
         // write your code here
-        long temp = n/5;
+        long temp = n / 5;
         long count = 0;
-        while(temp!=0){
-            count+= temp;
+        while (temp != 0) {
+            count += temp;
             temp /= 5;
         }
         return count;
